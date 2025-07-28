@@ -120,9 +120,7 @@ async fn publish(
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        80,
         &mut recv_buffer,
-        80,
         config,
     );
     publish_core(&mut client, wait, qos, topic, MSG, false).await
@@ -152,9 +150,7 @@ async fn publish_spec(
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        80,
         &mut recv_buffer,
-        80,
         config,
     );
     publish_core(&mut client, wait, qos, topic, message, err).await
@@ -250,9 +246,7 @@ async fn receive_multiple<const TOPICS: usize>(
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        100,
         &mut recv_buffer,
-        100,
         config,
     );
 
@@ -277,9 +271,7 @@ async fn receive(ip: Ipv4Addr, qos: QualityOfService, topic: &str) -> Result<(),
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        100,
         &mut recv_buffer,
-        100,
         config,
     );
 
@@ -304,9 +296,7 @@ async fn receive_with_wrong_cred(qos: QualityOfService) -> Result<(), ReasonCode
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        100,
         &mut recv_buffer,
-        100,
         config,
     );
 
@@ -343,9 +333,7 @@ async fn receive_multiple_second_unsub<const TOPICS: usize>(
     let mut client = MqttClient::<TokioNetwork, 5, CountingRng>::new(
         connection,
         &mut write_buffer,
-        100,
         &mut recv_buffer,
-        100,
         config,
     );
 
@@ -358,7 +346,7 @@ async fn receive_multiple_second_unsub<const TOPICS: usize>(
 
     info!(
         "[Receiver] Subscribing to topics {}, {}",
-        topic_names.get(0).unwrap(),
+        topic_names.first().unwrap(),
         topic_names.get(1).unwrap()
     );
     result = client.subscribe_to_topics(topic_names).await;
