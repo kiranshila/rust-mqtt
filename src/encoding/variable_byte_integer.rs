@@ -27,7 +27,6 @@ use crate::utils::types::BufferError;
 /// VariableByteIntegerEncoder and VariableByteIntegerDecoder are implemented based on
 /// pseudo code which is introduced in MQTT version 5.0 OASIS standard accesible from
 /// https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901107
-
 /// Variable byte integer encoder structure is help structure which implements function used to
 /// encode integer into MQTT variable byte integer format. This format is mainly used to encode
 /// lenghts stored in a packet.
@@ -35,7 +34,6 @@ pub struct VariableByteIntegerEncoder;
 
 /// Variable byte integers error enumeration is used by both encoder and decoder for
 /// error notification.
-
 pub type VariableByteInteger = [u8; 4];
 
 impl VariableByteIntegerEncoder {
