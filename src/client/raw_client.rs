@@ -72,6 +72,15 @@ where
         }
     }
 
+    pub fn network_driver_mut(&mut self) -> Option<&mut T> {
+        let con  = &mut self.connection;
+        if let Some(x) = con {
+           Some(x.inner_mut())
+        } else {
+            None
+        }
+    }
+
     async fn connect_to_broker_v5<'b>(&'b mut self) -> Result<(), ReasonCode> {
         if self.connection.is_none() {
             return Err(ReasonCode::NetworkError);

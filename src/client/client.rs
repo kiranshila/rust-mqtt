@@ -63,6 +63,11 @@ where
         }
     }
 
+    /// Get access to the inner network driver object in case we need to reconnect
+    pub fn inner_driver_mut(&mut self) -> Option<&mut T> {
+        self.raw.network_driver_mut()
+    }
+
     /// Method allows client connect to server. Client is connecting to the specified broker
     /// in the `ClientConfig`. Method selects proper implementation of the MQTT version based on the config.
     /// If the connection to the broker fails, method returns Err variable that contains

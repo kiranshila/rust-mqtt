@@ -33,6 +33,12 @@ where
     io: T,
 }
 
+impl<T> NetworkConnection<T> where T: Read + Write{
+    pub fn inner_mut(&mut self) -> &mut T {
+        &mut self.io
+    }
+}
+
 /// Network connection represents an established TCP connection.
 impl<T> NetworkConnection<T>
 where
